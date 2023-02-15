@@ -1,3 +1,41 @@
-# hw05_final
+## Проект yatube - это соцсеть под названием Yatube.
 
-[![CI](https://github.com/yandex-praktikum/hw05_final/actions/workflows/python-app.yml/badge.svg?branch=master)](https://github.com/yandex-praktikum/hw05_final/actions/workflows/python-app.yml)
+В данном проекте реализованы следующие функции:
+1) Пользовательская часть - регистрация, авторизация, восстановление и изменение пароля;
+2) Написание постов - пользователи могут создавать посты;
+3) Создание групп - пользователи могут создавать группы, и, при создании поста, выбирать к какой группе он относится;
+4) Подписки - пользователи могут подписываться на интересующих их авторов или группы.
+5) Комментарии - пользователи могут оставлять комментарии к постам.
+
+**Как запустить проект:**
+
+Клонировать репозиторий и перейти в него в командной строке:
+```
+git clone git@github.com:Helliur/yatube.git
+```
+```
+cd yatube
+```
+Установить виртуальное окружение и запустить его:
+```
+python -m venv venv
+```
+```
+source vevn/scripts/activate
+```
+Установить зависимости:
+```
+pip install -r requirements
+```
+Перейти в папку с manage.py:
+```
+cd yatube
+```
+Применение миграций:
+```
+python manage.py migrate
+```
+Запуск backend-сервера:
+```
+python manage.py runserver
+```
