@@ -39,3 +39,4 @@ python manage.py migrate
 ```
 python manage.py runserver
 ```
+**Для запуска проекта требуется наличие SECRET_KEY, который необходимо записать в файле .env в той же директории, в которой расположен файл settings.py**
