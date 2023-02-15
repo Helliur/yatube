@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+  Группы
+{% endblock %}
+
+{% block content %}
+  <div class="container py-5">
+    <h1>Группы</h1>
+      <article>
+        <p></p>
+        {% for group in groups %}
+          <h5>Группа: {{ group.title }}</h5>
+          <p>{{ group.description }}</p>
+          <p>
+            <a class="btn btn-outline-primary" href="{% url 'posts:group_list' group.slug %}">Записи группы</a>
+            <a class="btn btn-outline-primary" href="{% url 'posts:group_edit' group.slug %}">Редактировать группу</a>
+            <a class="btn btn-outline-danger" href="{% url 'posts:group_delete' group.slug %}">Удалить группу</a>
+          </p>
+          {% if not forloop.last %}<hr>{% endif %}
+        {% endfor %} 
+      </article>
+  </div>
+{% endblock %}

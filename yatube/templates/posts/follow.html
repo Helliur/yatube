@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% load static %}   
+
+{% block header %}
+  Ваши подписки
+{% endblock %}
+
+{% block content %}
+  <div class="container py-5">     
+    <h1>Ваши подписки</h1>
+    {% include 'posts/includes/switcher.html' with follow=True index_header=True %}
+      <article>
+        {% for post in page_obj %}
+          <ul>
+            <li>
+              Автор: 
+              {% if post.author.get_full_name %}
+                <a href="{% url 'posts:profile' post.author.username %}">
+                  {{ post.author.get_full_name }}
+                </a>
+              {% else %}
+                <a href="{% url 'posts:profile' post.author.username %}">
+                  {{ post.author.username }}
+                </a>
+              {% endif%}
+            </li>
+            <li>
+              Дата публикации: {{ post.pub_date|date:"d E Y" }}
+            </li>
+            {% if post.group %}
+            <li>
+              Группа: <a href="{% url 'posts:group_list' post.group.slug %}">{{ post.group }}</a>
+            </li>
+            {% endif %} 
+          </ul>
+          <p>{{ post.text }}</p>
+          {% thumbnail post.image "1440x560" crop="center" upscale=False as im %}
+            <img class="card-img my-2" src="{{ im.url }}">
+          {% endthumbnail %} 
+          <button 
+            class="btn btn-outline-primary" 
+            onclick="window.location.href = '{% url 'posts:post_detail' post.id %}'"
+            type="button"
+          >
+            Подробная информация 
+          </button>
+          {% if not forloop.last %}<hr>{% endif %}
+        {% endfor %} 
+      </article>
+    {% include 'posts/includes/paginator.html' %}
+  </div>
+{% endblock %}
